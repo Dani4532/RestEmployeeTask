@@ -25,4 +25,5 @@ public class TaskController {
     public List<Task> all(){
         return repository.findAll();
     }
+
 }
