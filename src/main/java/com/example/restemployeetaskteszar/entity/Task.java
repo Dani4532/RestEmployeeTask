@@ -23,7 +23,7 @@ import java.util.Objects;
 @Setter
 
 @Entity
-public class Task extends AbstractPersistable<Integer> implements Serializable{
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

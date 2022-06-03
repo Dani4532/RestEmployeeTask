@@ -19,12 +19,11 @@ import java.util.Objects;
 @Setter
 
 @Entity
-public class Employee extends AbstractPersistable<Integer> implements Serializable {
+public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   // @Size(max = 6)
-    private Integer id;
+    @Size(max = 6)
+    private String id;
 
     @NotNull
     private String firstName;
