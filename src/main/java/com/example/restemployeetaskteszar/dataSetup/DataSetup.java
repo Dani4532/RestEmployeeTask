@@ -22,6 +22,7 @@ public class DataSetup {
         return args -> {
             var employee = new Employee("SCRE", "Christoph", "Schreiber", null);
           repository.save(employee);
+
         };
     }
 

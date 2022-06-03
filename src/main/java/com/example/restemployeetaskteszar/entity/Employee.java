@@ -19,10 +19,10 @@ import java.util.Objects;
 @Setter
 
 @Entity
-public class Employee  {
+
+    public class Employee {
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Size(max = 6)
     private String id;
 
