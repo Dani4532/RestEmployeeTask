@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -36,30 +37,21 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees?name=partial_name")
-    public List<Employee> getAllThatContain(@PathVariable String name){
-        return repository.findEmployeesByFirstNameContaining(name);
+    public List<Employee> getAllThatContain(@RequestParam(required = false, name = "partial_name") String name){
+        return repository.findAll()
+                .stream()
+                .filter(employee -> employee.getFirstName().contains(name) || employee.getLastName().contains(name))
+                .toList();
     }
 
     @GetMapping("/employees/{id}/houresWorked")
-    public Integer getHouresWorked(@PathVariable String id){
-        var found = repository.findById(id);
-        var tasks = found.get().getTasks();
-        var sum = 0;
-        for (Task task : tasks) {
-            sum += task.getHouresWorked();
-        }
-        return sum;
+    public Optional<Integer> getHouresWorked(@PathVariable String id){
+        return repository.houresWorkedByEmployee(id);
     }
 
-    @GetMapping("/employees/{id}/tsks?from=__&to=__")
-    public List<Task> getTasksFromTo(@PathVariable String id, @PathVariable String from, @PathVariable String to){
-        var found = repository.findById(id);
-        var tasks = found.get().getTasks();
-        return tasks.stream().filter(task ->{if (task.getFinished().isBefore(LocalDate.parse(to)) && task.getFinished().isAfter(LocalDate.parse(from))){
-            return true;
-        }
-            return false;
-        }).toList();
+    @GetMapping("/employees/{id}/tsks")
+    public List<Task> getTasksFromTo(@PathVariable String id, @PathVariable LocalDate from, @PathVariable LocalDate to){
+        return repository.tasksFinishedByEmployee(id, from, to);
     }
 
 
