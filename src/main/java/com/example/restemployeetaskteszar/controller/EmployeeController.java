@@ -2,11 +2,10 @@ package com.example.restemployeetaskteszar.controller;
 
 import com.example.restemployeetaskteszar.entity.Employee;
 import com.example.restemployeetaskteszar.repository.EmployeeRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +29,11 @@ public class EmployeeController {
     Employee findEmployeeById(@PathVariable String id){
         return repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException());
+    }
+
+    @PostMapping("/employees")
+    ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee){
+        Employee saved = repository.save(employee);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 }
