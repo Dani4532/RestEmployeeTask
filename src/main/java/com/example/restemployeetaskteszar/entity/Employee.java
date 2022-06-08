@@ -19,7 +19,8 @@ import java.util.Objects;
 @Setter
 
 @Entity
-public class Employee {
+
+    public class Employee {
 
     @Id
     @Size(max = 6)
