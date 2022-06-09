@@ -14,16 +14,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-//@Configuration
+@Configuration
 public class DataSetup {
-/*
+
     @Bean
     CommandLineRunner saveEmployee(EmployeeRepository repository){
         return args -> {
-            var employees = List.of(new Employee("SCRE", "Christoph", "Schreiber", null),
-                    new Employee("MAUS", "Franz", "Maus", null),
-                    new Employee("SCBI", "Andreas", "Schönbichler", null),
-                    new Employee("WEIX", "Martin", "Weixlbaum", null));
+            var employees = List.of(new Employee("SCRE", "Christoph", "Schreiber"),
+                    new Employee("MAUS", "Franz", "Maus"),
+                    new Employee("SCBI", "Andreas", "Schönbichler"),
+                    new Employee("WEIX", "Martin", "Weixlbaum"));
             employees.forEach(repository::save);
 
         };
@@ -37,5 +37,5 @@ public class DataSetup {
         };
     }
 
- */
+
 }
