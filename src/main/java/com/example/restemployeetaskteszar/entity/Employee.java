@@ -20,6 +20,7 @@ import java.util.Objects;
 @Setter
 
 @Entity
+@Table(name = "staff")
 public class Employee {
 
     @Id

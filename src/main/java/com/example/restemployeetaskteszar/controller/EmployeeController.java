@@ -47,12 +47,12 @@ public class EmployeeController {
 
 
 
-    @GetMapping("/employees/{id}/houresWorked")
+    @GetMapping("/employees/{id}/hoursWorked")
     public Optional<Integer> getHouresWorked(@PathVariable String id){
-        return repository.houresWorkedByEmployee(id);
+        return repository.hoursWorkedByEmployee(id);
     }
 
-    @GetMapping("/employees/{id}/tsks")
+    @GetMapping("/employees/{id}/tasks")
     public List<Task> getTasksFromTo(@PathVariable String id, @RequestParam(name = "from") String from, @RequestParam(name = "to") String to){
         return repository.tasksFinishedByEmployee(id, LocalDate.parse(from), LocalDate.parse(to));
     }

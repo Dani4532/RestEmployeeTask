@@ -23,10 +23,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     List<Task> tasksFinishedByEmployee(String id, LocalDate from, LocalDate to);
 
     @Query("""
-            select sum(task.houresWorked)
+            select sum(task.hoursWorked)
             from Task task
             where task.employee.id = ?1
             """)
-    Optional<Integer> houresWorkedByEmployee(String id);
+    Optional<Integer> hoursWorkedByEmployee(String id);
 
 }
