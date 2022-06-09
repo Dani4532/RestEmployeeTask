@@ -34,6 +34,7 @@ public class Task {
 
     @Past
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "finished_date")
     private LocalDate finished;
 
     private int hoursWorked;
