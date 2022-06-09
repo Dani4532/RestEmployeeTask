@@ -20,8 +20,11 @@ public class DataSetup {
     @Bean
     CommandLineRunner saveEmployee(EmployeeRepository repository){
         return args -> {
-            var employee = new Employee("SCRE", "Christoph", "Schreiber", null);
-          repository.save(employee);
+            var employees = List.of(new Employee("SCRE", "Christoph", "Schreiber"),
+                    new Employee("MAUS", "Franz", "Maus"),
+                    new Employee("SCBI", "Andreas", "Schönbichler"),
+                    new Employee("WEIX", "Martin", "Weixlbaum"));
+            employees.forEach(repository::save);
 
         };
     }
@@ -33,4 +36,6 @@ public class DataSetup {
             repository.save(task);
         };
     }
+
+
 }

@@ -13,14 +13,14 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 
 @Entity
-
-    public class Employee {
+public class Employee {
 
     @Id
     @Size(max = 6)
@@ -32,8 +32,6 @@ import java.util.Objects;
     @NotNull
     private String lastName;
 
-    @OneToMany
-    private List<Task> tasks;
 
     @Override
     public boolean equals(Object o) {
