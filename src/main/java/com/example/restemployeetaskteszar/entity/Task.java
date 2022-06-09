@@ -23,6 +23,7 @@ import java.util.Objects;
 @Setter
 
 @Entity
+@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +36,7 @@ public class Task {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate finished;
 
-    private int houresWorked;
+    private int hoursWorked;
 
     @ManyToOne
     private Employee employee;
