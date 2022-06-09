@@ -25,10 +25,7 @@ public class EmployeeController {
         this.repository = repository;
     }
 
-    @GetMapping("/employees")
-    public List<Employee> all(){
-        return repository.findAll();
-    }
+
 
     @GetMapping("/employees/{id}")
     Employee findEmployeeById(@PathVariable String id){
@@ -36,13 +33,19 @@ public class EmployeeController {
                 .orElseThrow(() -> new IllegalArgumentException());
     }
 
-    @GetMapping("/employees?name=partial_name")
-    public List<Employee> getAllThatContain(@RequestParam(required = false, name = "partial_name") String name){
+    @GetMapping("/employees")
+    public List<Employee> getAllThatContain(@RequestParam(required = false, name = "name") String name){
+        if(name == null){
+            return repository.findAll();
+        }
+
         return repository.findAll()
                 .stream()
                 .filter(employee -> employee.getFirstName().contains(name) || employee.getLastName().contains(name))
                 .toList();
     }
+
+
 
     @GetMapping("/employees/{id}/houresWorked")
     public Optional<Integer> getHouresWorked(@PathVariable String id){
@@ -50,9 +53,11 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{id}/tsks")
-    public List<Task> getTasksFromTo(@PathVariable String id, @PathVariable LocalDate from, @PathVariable LocalDate to){
-        return repository.tasksFinishedByEmployee(id, from, to);
+    public List<Task> getTasksFromTo(@PathVariable String id, @RequestParam(name = "from") String from, @RequestParam(name = "to") String to){
+        return repository.tasksFinishedByEmployee(id, LocalDate.parse(from), LocalDate.parse(to));
     }
+
+
 
 
     @PostMapping("/employees")

@@ -12,12 +12,13 @@ import java.util.Optional;
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
     List<Employee> findEmployeesByFirstNameContaining(String name);
 
+
+
     @Query("""
             select task
             from Task task
             where task.employee.id = ?1 and
-            task.finished > ?2 and 
-            task.finished < ?3
+            task.finished between ?2 and ?3
             """)
     List<Task> tasksFinishedByEmployee(String id, LocalDate from, LocalDate to);
 
@@ -27,4 +28,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
             where task.employee.id = ?1
             """)
     Optional<Integer> houresWorkedByEmployee(String id);
+
 }
