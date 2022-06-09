@@ -45,6 +45,8 @@ public class EmployeeController {
                 .toList();
     }
 
+
+
     @GetMapping("/employees/{id}/houresWorked")
     public Optional<Integer> getHouresWorked(@PathVariable String id){
         return repository.houresWorkedByEmployee(id);
@@ -54,6 +56,8 @@ public class EmployeeController {
     public List<Task> getTasksFromTo(@PathVariable String id, @RequestParam(name = "from") String from, @RequestParam(name = "to") String to){
         return repository.tasksFinishedByEmployee(id, LocalDate.parse(from), LocalDate.parse(to));
     }
+
+
 
 
     @PostMapping("/employees")

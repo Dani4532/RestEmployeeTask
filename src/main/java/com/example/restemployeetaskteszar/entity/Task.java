@@ -22,7 +22,7 @@ import java.util.Objects;
 @Getter
 @Setter
 
-@Entity
+@Entity(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

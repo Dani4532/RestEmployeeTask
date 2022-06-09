@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Configuration
+//@Configuration
 public class DataSetup {
-
+/*
     @Bean
     CommandLineRunner saveEmployee(EmployeeRepository repository){
         return args -> {
@@ -36,4 +36,6 @@ public class DataSetup {
             repository.save(task);
         };
     }
+
+ */
 }
