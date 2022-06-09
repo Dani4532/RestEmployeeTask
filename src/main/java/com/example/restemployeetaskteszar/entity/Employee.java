@@ -19,7 +19,7 @@ import java.util.Objects;
 @Getter
 @Setter
 
-@Entity(name = "staff")
+@Entity
 public class Employee {
 
     @Id

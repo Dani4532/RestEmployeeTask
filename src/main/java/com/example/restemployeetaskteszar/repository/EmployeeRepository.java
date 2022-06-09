@@ -16,7 +16,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
     @Query("""
             select task
-            from tasks task
+            from Task task
             where task.employee.id = ?1 and
             task.finished between ?2 and ?3
             """)
@@ -24,7 +24,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
     @Query("""
             select sum(task.houresWorked)
-            from tasks task
+            from Task task
             where task.employee.id = ?1
             """)
     Optional<Integer> houresWorkedByEmployee(String id);
